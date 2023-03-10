@@ -3,7 +3,7 @@ Frp 是一个高性能的反向代理应用，可以帮助您轻松地进行内�
 
 * 详情：fatedier (https://github.com/fatedier/frp)</br>
 * 脚本原作者：clangcn (https://github.com/clangcn/onekey-install-shell)</br>
-* 本脚本完全使用MvsCode(https://github.com/MvsCode/frps-onekey )的frps.init代码修改成，供frpc使用。
+* 本脚本完全使用MvsCode(https://github.com/MvsCode/frps-onekey )的frps.init代码修改而成，供frpc使用。
 
 ### 操作方法
 #### 一、下载frpc.init移动到/etc/init.d/frpc并赋权
