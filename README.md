@@ -8,7 +8,7 @@ Frp 是一个高性能的反向代理应用，可以帮助您轻松地进行内�
 ### 操作方法
 #### 一、下载frpc.init移动到/etc/init.d/frpc并赋权
 ~~~bash
-wget -N https://raw.githubusercontent.com/KuwiNet/frpc/master/frpc.init -o ./frpc.init
+wget -N https://raw.githubusercontent.com/KuwiNet/frpc/master/frpc.init
 mv frpc.init /etc/init.d/frpc
 chmod 755 /etc/init.d/frpc
 ~~~
