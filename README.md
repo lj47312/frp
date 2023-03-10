@@ -6,6 +6,7 @@ Frp 是一个高性能的反向代理应用，可以帮助您轻松地进行内�
 * 本脚本完全使用MvsCode(https://github.com/MvsCode/frps-onekey )的frps.init代码修改成，供frpc使用。
 
 ### 操作方法
+#### 下载frpc.init移动到/etc/init.d/frpc并赋权
 ~~~bash
 wget -N https://raw.githubusercontent.com/KuwiNet/frpc/main/frpc.init -o ./frpc.init
 mv frpc.init /etc/init.d/frpc
