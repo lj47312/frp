@@ -19,6 +19,5 @@ update-rc.d -f frpc defaults
 ~~~
 ##### CentOS/Redhat
 ~~~bash
-ln -s /etc/init.d/frpc /usr/bin/frpc
 chkconfig --add frpc
 ~~~
