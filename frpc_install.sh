@@ -103,26 +103,26 @@ type = http
 local_ip = 127.0.0.1
 local_port = 8000
 custom_domains = *
+subdomain = www
 
 [000002.https]
 type = https
 local_ip = 127.0.0.1
 local_port = 8001
 custom_domains = *
+subdomain = www
 
 [000003.http]
 type = http
 local_ip = 127.0.0.1
 local_port = 8000
 custom_domains = *.afrps.cn
-subdomain = www
 
 [000004.https]
 type = https
 local_ip = 127.0.0.1
 local_port = 8001
 custom_domains = *.afrps.cn
-subdomain = www
 EOF
 
 # configure systemd
