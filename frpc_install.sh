@@ -148,7 +148,7 @@ sudo systemctl start ${FRP_NAME}
 sudo systemctl enable ${FRP_NAME}
 
 # clean
-rm -rf ${WORK_PATH}/${FILE_NAME}.tar.gz ${WORK_PATH}/${FILE_NAME} ${FRP_NAME}_linux_install.sh
+rm -rf ${WORK_PATH}/${FILE_NAME}.tar.gz ${WORK_PATH}/${FILE_NAME} ${FRP_NAME}_install.sh
 
 echo -e "${Green}====================================================================${Font}"
 echo -e "${Green}安装成功,请先修改 ${FRP_NAME}.ini 文件,确保格式及配置正确无误!${Font}"
