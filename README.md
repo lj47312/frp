@@ -28,7 +28,10 @@ ln -s /etc/init.d/frpc /usr/bin/frpc
 ~~~bash
 chkconfig --add frpc
 ~~~
-#### 四、启动Frpc
+#### 四、启动Frpc、查看状态
 ~~~bash
 frpc start
+~~~
+~~~bash
+frpc status
 ~~~
