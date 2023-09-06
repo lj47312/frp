@@ -28,3 +28,7 @@ ln -s /etc/init.d/frpc /usr/bin/frpc
 ~~~bash
 chkconfig --add frpc
 ~~~
+#### 四、启动Frpc
+~~~bash
+frpc start
+~~~
