@@ -128,7 +128,7 @@ EOF
 # configure systemd
 cat >/lib/systemd/system/${FRP_NAME}.service <<EOF
 [Unit]
-Description=Frp Server Service
+Description=Frpc Server Service
 After=network.target syslog.target
 Wants=network.target
 
