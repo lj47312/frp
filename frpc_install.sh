@@ -14,7 +14,7 @@ Font="\033[0m"
 # variable
 WORK_PATH=$(dirname $(readlink -f $0))
 FRP_NAME=frpc
-FRP_VERSION=0.51.3
+FRP_VERSION=0.57.0
 FRP_PATH=/usr/local/frpc
 PROXY_URL="https://ghproxy.com/"
 
@@ -116,13 +116,13 @@ subdomain = www
 type = http
 local_ip = 127.0.0.1
 local_port = 8000
-custom_domains = *.afrps.cn
+custom_domains = *.afrp.net
 
 [000004.https]
 type = https
 local_ip = 127.0.0.1
 local_port = 8001
-custom_domains = *.afrps.cn
+custom_domains = *.afrp.net
 EOF
 
 # configure systemd
