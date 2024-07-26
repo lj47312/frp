@@ -12,7 +12,10 @@ curl -L https://raw.githubusercontent.com/KuwiNet/frpc/master/frpc_install.sh -o
 ~~~
 
 #### 二、修改Frpc配置
-先修改 frpc.toml 文件,确保格式及配置正确无误!文件位置：~ vi /usr/local/frpc/frpc.toml~
+先修改 frpc.toml 文件，确保格式及配置正确无误！文件位置：/usr/local/frpc/frpc.toml
+~~~bash
+vi /usr/local/frpc/frpc.toml
+~~~
 
 #### 三、启动Frpc、查看状态
 ~~~bash
