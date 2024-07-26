@@ -10,28 +10,14 @@ Frp 是一个高性能的反向代理应用，可以帮助您轻松地进行内�
 ~~~bash
 curl -L https://raw.githubusercontent.com/KuwiNet/frpc/master/frpc_install.sh -o frpc_install.sh && chmod +x frpc_install.sh && sudo ./frpc_install.sh
 ~~~
-<!--
-#### 二、下载frpc.init移动到/etc/init.d/frpc并赋权
+
+#### 二、启动Frpc、查看状态
 ~~~bash
-wget -N https://raw.githubusercontent.com/KuwiNet/frpc/master/frpc.init
-mv frpc.init /etc/init.d/frpc
-chmod 755 /etc/init.d/frpc
+sudo systemctl start frpc
 ~~~
-#### 三、安装快捷命令
-##### Debian/Ubuntu
-~~~bash
-update-rc.d -f frpc defaults
-ln -s /etc/init.d/frpc /usr/bin/frpc
-~~~
-##### CentOS/Redhat
-~~~bash
-chkconfig --add frpc
-~~~
-#### 四、启动Frpc、查看状态
-~~~bash
-frpc start
+~~~basj
+sudo systemctl restart frpc
 ~~~
 ~~~bash
--->
-frpc status
+sudo systemctl status frpc
 ~~~
