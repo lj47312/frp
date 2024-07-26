@@ -19,14 +19,14 @@ FRP_PATH=/usr/local/frpc
 PROXY_URL="https://ghproxy.com/"
 
 # check frpc
-if [ -f "/usr/local/frpc/${FRP_NAME}" ] || [ -f "/usr/local/frpc/${FRP_NAME}.ini" ] || [ -f "/lib/systemd/system/${FRP_NAME}.service" ];then
+if [ -f "/usr/local/frpc/${FRP_NAME}" ] || [ -f "/usr/local/frpc/${FRP_NAME}.toml" ] || [ -f "/lib/systemd/system/${FRP_NAME}.service" ];then
     echo -e "${Green}=========================================================================${Font}"
     echo -e "${RedBG}当前已退出脚本.${Font}"
     echo -e "${Green}检查到服务器已安装${Font} ${Red}${FRP_NAME}${Font}"
-    echo -e "${Green}请手动确认和删除${Font} ${Red}/usr/local/${Font} ${Green}目录下的${Font} ${Red}${FRP_NAME}${Font} ${Green}和${Font} ${Red}/${FRP_NAME}.ini${Font} ${Green}文件以及${Font} ${Red}/lib/systemd/system/${FRP_NAME}.service${Font} ${Green}文件,再次执行本脚本.${Font}"
+    echo -e "${Green}请手动确认和删除${Font} ${Red}/usr/local/${Font} ${Green}目录下的${Font} ${Red}${FRP_NAME}${Font} ${Green}和${Font} ${Red}/${FRP_NAME}.toml${Font} ${Green}文件以及${Font} ${Red}/lib/systemd/system/${FRP_NAME}.service${Font} ${Green}文件,再次执行本脚本.${Font}"
     echo -e "${Green}参考命令如下:${Font}"
     echo -e "${Red}rm -rf /usr/local/frpc/${FRP_NAME}${Font}"
-    echo -e "${Red}rm -rf /usr/local/frpc/${FRP_NAME}.ini${Font}"
+    echo -e "${Red}rm -rf /usr/local/frpc/${FRP_NAME}.toml${Font}"
     echo -e "${Red}rm -rf /lib/systemd/system/${FRP_NAME}.service${Font}"
     echo -e "${Green}=========================================================================${Font}"
     exit 0
@@ -91,38 +91,44 @@ tar -zxvf ${FILE_NAME}.tar.gz
 mkdir -p ${FRP_PATH}
 mv ${FILE_NAME}/${FRP_NAME} ${FRP_PATH}
 
-# configure frpc.ini
-cat >${FRP_PATH}/${FRP_NAME}.ini <<EOF
-[common]
-server_addr = 127.0.0.1
-server_port = 7000
-token = afrps.cn
+# configure frpc.toml
+cat >${FRP_PATH}/${FRP_NAME}.toml <<EOF
+serverAddr = "127.0.0.1"
+serverPort = 7000
+auth.method = "token"
+auth.token = "afrps.cn"
 
-[000001.http]
-type = http
-local_ip = 127.0.0.1
-local_port = 8000
-custom_domains = *
-subdomain = www
+[[proxies]]
+name = "000001.http"
+type = "http"
+localIP = "127.0.0.1"
+localPort = 8000
+subdomain = "www"
+customDomains = ["*"]
 
-[000002.https]
-type = https
-local_ip = 127.0.0.1
-local_port = 8001
-custom_domains = *
-subdomain = www
+[[proxies]]
+name = "000002.https"
+type = "https"
+localIP = "127.0.0.1"
+localPort = 8001
+subdomain = "www"
+customDomains = ["*"]
 
-[000003.http]
-type = http
-local_ip = 127.0.0.1
-local_port = 8000
-custom_domains = *.afrp.net
+[[proxies]]
+name = "000003.http"
+type = "http"
+localIP = "127.0.0.1"
+localPort = 8000
+subdomain = "www"
+customDomains = ["*.afrp.ne"]
 
-[000004.https]
-type = https
-local_ip = 127.0.0.1
-local_port = 8001
-custom_domains = *.afrp.net
+[[proxies]]
+name = "000004.https"
+type = "https"
+localIP = "127.0.0.1"
+localPort = 8001
+subdomain = "www"
+customDomains = ["*.afrp.ne"]
 EOF
 
 # configure systemd
@@ -136,7 +142,7 @@ Wants=network.target
 Type=simple
 Restart=on-failure
 RestartSec=5s
-ExecStart=/usr/local/frpc/${FRP_NAME} -c /usr/local/frpc/${FRP_NAME}.ini
+ExecStart=/usr/local/frpc/${FRP_NAME} -c /usr/local/frpc/${FRP_NAME}.toml
 
 [Install]
 WantedBy=multi-user.target
@@ -151,8 +157,8 @@ sudo systemctl enable ${FRP_NAME}
 rm -rf ${WORK_PATH}/${FILE_NAME}.tar.gz ${WORK_PATH}/${FILE_NAME} ${FRP_NAME}_install.sh
 
 echo -e "${Green}====================================================================${Font}"
-echo -e "${Green}安装成功,请先修改 ${FRP_NAME}.ini 文件,确保格式及配置正确无误!${Font}"
-echo -e "${Red}vi /usr/local/frpc/${FRP_NAME}.ini${Font}"
+echo -e "${Green}安装成功,请先修改 ${FRP_NAME}.toml 文件,确保格式及配置正确无误!${Font}"
+echo -e "${Red}vi /usr/local/frpc/${FRP_NAME}.toml${Font}"
 echo -e "${Green}修改完毕后执行以下命令重启服务:${Font}"
 echo -e "${Red}sudo systemctl restart ${FRP_NAME}${Font}"
 echo -e "${Green}====================================================================${Font}"
