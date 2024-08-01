@@ -16,7 +16,7 @@ WORK_PATH=$(dirname $(readlink -f $0))
 FRP_NAME=frpc
 FRP_VERSION=0.59.0
 FRP_PATH=/usr/local/frpc
-PROXY_URL="https://ghproxy.com/"
+PROXY_URL="https://mirror.ghproxy.com/"
 
 # check frpc
 if [ -f "/usr/local/frpc/${FRP_NAME}" ] || [ -f "/usr/local/frpc/${FRP_NAME}.toml" ] || [ -f "/lib/systemd/system/${FRP_NAME}.service" ];then
