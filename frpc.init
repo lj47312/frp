@@ -23,9 +23,9 @@ ProgramName="Frpc"
 ProgramPath="/usr/local/frpc"
 NAME=frpc
 BIN=${ProgramPath}/${NAME}
-CONFIGFILE=${ProgramPath}/frpc.ini
+CONFIGFILE=${ProgramPath}/frpc.toml
 SCRIPTNAME=/etc/init.d/${NAME}
-version="23.0310"
+version="24.0802"
 program_version=`${BIN} --version`
 RET_VAL=0
 
