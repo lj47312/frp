@@ -96,7 +96,7 @@ cat >${FRP_PATH}/${FRP_NAME}.toml <<EOF
 serverAddr = "127.0.0.1"
 serverPort = 7000
 auth.method = "token"
-auth.token = "afrps.cn"
+auth.token = "afrp.net"
 
 [[proxies]]
 name = "000001.http"
@@ -120,7 +120,7 @@ type = "http"
 localIP = "127.0.0.1"
 localPort = 8000
 subdomain = "www"
-customDomains = ["*.afrp.ne"]
+customDomains = ["*.afrp.net"]
 
 [[proxies]]
 name = "000004.https"
@@ -128,7 +128,7 @@ type = "https"
 localIP = "127.0.0.1"
 localPort = 8001
 subdomain = "www"
-customDomains = ["*.afrp.ne"]
+customDomains = ["*.afrp.net"]
 EOF
 
 # configure systemd
