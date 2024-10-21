@@ -25,7 +25,7 @@ NAME=frpc
 BIN=${ProgramPath}/${NAME}
 CONFIGFILE=${ProgramPath}/frpc.toml
 SCRIPTNAME=/etc/init.d/${NAME}
-version="24.0802"
+version="24.1022"
 program_version=`${BIN} --version`
 RET_VAL=0
 
