@@ -8,7 +8,7 @@ Frp 是一个高性能的反向代理应用，可以帮助您轻松地进行内�
 ### 操作方法
 #### 一、安装Frpc客户端
 ~~~bash
-curl -L https://raw.githubusercontent.com/KuwiNet/frpc/master/frpc_install.sh -o frpc_install.sh && chmod +x frpc_install.sh && ./frpc_install.sh
+bash <(curl -Ls https://raw.githubusercontent.com/KuwiNet/frpc-onekey/master/frpc_install.sh)
 ~~~
 
 #### 二、修改Frpc配置
