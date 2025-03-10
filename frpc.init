@@ -158,6 +158,7 @@ case "${arg1}" in
     *)
         fun_clangcn
         echo "用法: frpc {start|stop|restart|status|config|version}"
+        echo ""
         RET_VAL=1
     ;;
 esac
