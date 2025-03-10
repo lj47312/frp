@@ -51,7 +51,7 @@ frpc status    # 查看状态
 frpc version   # 查看版本
 ~~~
 ~~~bash
-frpc config    # 查看配置
+frpc config    # 编辑配置
 ~~~
 ~~~bash
 用法: frpc {start|stop|restart|status|config|version}
