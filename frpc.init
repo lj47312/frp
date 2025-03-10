@@ -153,7 +153,7 @@ case "${arg1}" in
     ;;
     *)
         fun_clangcn
-        echo "用法: $SCRIPTNAME {start|stop|restart|status|config|version}"
+        echo "用法: frpc {start|stop|restart|status|config|version}"
         RET_VAL=1
     ;;
 esac
