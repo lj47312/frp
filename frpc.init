@@ -60,15 +60,15 @@ fun_start()
         return 0
     fi
     fun_load_config
-    echo -n "开始运行 ${ProgramName}(${program_version})..."
+    echo -n "开始启动 ${ProgramName}(${program_version})..."
     ${BIN} -c ${CONFIGFILE} >/dev/null 2>&1 &
     sleep 1
     if ! fun_check_run; then
-        echo "start failed"
+        echo "启动失败"
         return 1
     fi
-    echo " done"
-    echo "${ProgramName} (pid $PID)正在运行."
+    echo " 完毕"
+    echo "${ProgramName} (pid $PID) 正在运行."
     return 0
 }
 
