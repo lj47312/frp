@@ -21,7 +21,7 @@ vi /usr/local/frpc/frpc.toml
 ~~~bash
 sudo systemctl start frpc    # 启动服务
 ~~~
-~~~basj
+~~~bash
 sudo systemctl restart frpc  # 重启服务
 ~~~
 ~~~bash
