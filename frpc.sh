@@ -80,6 +80,8 @@ if [ -f "/usr/local/frpc/${FRP_NAME}" ] || [ -f "/usr/local/frpc/${FRP_NAME}.tom
     echo -e "${Green}检查到服务器已安装${Font} ${Red}${FRP_NAME}${Font}"
     echo -e "${Green}更新${FRP_NAME}版本:${Font}"
     echo -e "${Red}sudo ./frpc.sh update${Font}"
+    echo -e "${Green}卸载${FRP_NAME}:${Font}"
+    echo -e "${Red}sudo ./frpc.sh uninstall${Font}"
     echo -e "${Green}强制重新安装${FRP_NAME}:${Font}"
     echo -e "${Red}sudo ./frpc.sh reinstall${Font}"
     echo -e "${Green}=========================================================================${Font}"
