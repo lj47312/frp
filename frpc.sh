@@ -46,11 +46,19 @@ update)
         echo "已经是最新版本"
     fi
     ;;
+uninstall)
+    systemctl stop ${FRP_NAME}
+    rm -rf ${FRP_PATH}/${FRP_NAME}
+    rm -rf ${FRP_PATH}/${FRP_NAME}.toml
+    rm -rf /lib/systemd/system/frpc.service
+    rm -rf /etc/init.d/frpc
+    ;;
 reinstall)
     systemctl stop ${FRP_NAME}
     rm -rf ${FRP_PATH}/${FRP_NAME}
     rm -rf ${FRP_PATH}/${FRP_NAME}.toml
     rm -rf /lib/systemd/system/frpc.service
+    rm -rf /etc/init.d/frpc
     $0 install
     ;;
 *)
