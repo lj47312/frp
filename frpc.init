@@ -33,7 +33,7 @@ RET_VAL=0
 strLog=""
 fun_clangcn()
 {
-    echo "                           管理 Frpc 快捷命令                         "
+    echo "                  管理 Frpc 快捷命令                  "
 }
 
 fun_check_run(){
