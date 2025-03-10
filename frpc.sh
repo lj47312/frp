@@ -72,6 +72,8 @@ if [ -f "/usr/local/frpc/${FRP_NAME}" ] || [ -f "/usr/local/frpc/${FRP_NAME}.tom
     echo -e "${Green}检查到服务器已安装${Font} ${Red}${FRP_NAME}${Font}"
     echo -e "${Green}更新${FRP_NAME}版本:${Font}"
     echo -e "${Red}sudo ./frpc.sh update${Font}"
+    echo -e "${Green}强制重新安装${FRP_NAME}:${Font}"
+    echo -e "${Red}sudo ./frpc.sh reinstall${Font}"
     echo -e "${Green}=========================================================================${Font}"
     exit 0
 fi
@@ -199,19 +201,36 @@ sudo systemctl enable ${FRP_NAME}
 
 # 下载 frpc.init
 wget -N https://raw.githubusercontent.com/KuwiNet/frpc/master/frpc.init
-mv frpc.init ./frpc.ini
-chmod 755 ./frpc.ini
+sudo mv frpc.init /etc/init.d/frpc
+sudo chmod +x /etc/init.d/frpc
+
+# 增强系统兼容性判断
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    # Debian系判断（含ubuntu/debian及其衍生版）
+    if [[ "$ID" =~ ^(ubuntu|debian)$ ]] || [[ "$ID_LIKE" =~ debian ]]; then
+        sudo update-rc.d -f frpc defaults
+        sudo ln -s /etc/init.d/frpc /usr/bin/frpc
+    
+    # RedHat系判断（含centos/rhel/fedora等）
+    elif [[ "$ID" =~ ^(centos|rhel|fedora)$ ]] || [[ "$ID_LIKE" =~ (rhel|fedora) ]]; then
+        chkconfig --add frpc
+    
+    else
+        echo "不支持的操作系统: $ID"
+        exit 1
+    fi
+else
+    echo "无法确定操作系统类型"
+    exit 1
+fi
 
 echo -e "${Green}====================================================================${Font}"
 echo -e "${Green}安装成功,请先修改 ${FRP_NAME}.toml 文件,确保格式及配置正确无误!${Font}"
 echo -e "${Red}vi /usr/local/frpc/${FRP_NAME}.toml${Font}"
 echo -e "${Green}修改完毕后执行以下命令重启服务:${Font}"
 echo -e "${Red}sudo systemctl restart ${FRP_NAME}${Font}"
-echo -e "${Green}Ubuntu/Debian安装后创建快捷命令${Font}"
-echo -e "${Red}sudo update-rc.d -f frpc defaults${Font}"
-echo -e "${Green}CentOS/Redhat安装后创建快捷命令${Font}"
-echo -e "${Red}chkconfig --add frpc${Font}"
-echo -e "${Green}快捷命令${Font}"
+echo -e "${Green}Frpc快捷命令${Font}"
 echo -e "${Red}frpc start     # 启动服务${Font}"
 echo -e "${Red}frpc restart   # 重启服务${Font}"
 echo -e "${Red}frpc stop      # 停止服务${Font}"
