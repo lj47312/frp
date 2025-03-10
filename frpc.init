@@ -25,7 +25,7 @@ NAME=frpc
 BIN=${ProgramPath}/${NAME}
 CONFIGFILE=${ProgramPath}/frpc.toml
 SCRIPTNAME=/etc/init.d/${NAME}
-version="24.1230"
+version="25.310"
 program_version=`${BIN} --version`
 RET_VAL=0
 
@@ -33,11 +33,8 @@ RET_VAL=0
 strLog=""
 fun_clangcn()
 {
-    echo ""
-    echo "+---------------------------------------------------------+"
-    echo "|     Manager for ${ProgramName}, Author Clang, Mender MvsCode      |"
-    echo "+---------------------------------------------------------+"
-    echo ""
+    echo "Frpc 快捷命令"
+    echo "用法: $SCRIPTNAME {start|stop|restart|status|config|version}"
 }
 
 fun_check_run(){
@@ -50,7 +47,7 @@ fun_check_run(){
 }
 fun_load_config(){
     if [ ! -r ${CONFIGFILE} ]; then
-        echo "config file ${CONFIGFILE} not found"
+        echo "配置文件 ${CONFIGFILE} 未找到"
         return 1
     fi
 }
@@ -60,11 +57,11 @@ fun_start()
       fun_clangcn
     fi
     if fun_check_run; then
-        echo "${ProgramName} (pid $PID) already running."
+        echo "${ProgramName} (pid $PID) 已在运行."
         return 0
     fi
     fun_load_config
-    echo -n "Starting ${ProgramName}(${program_version})..."
+    echo -n "开始运行 ${ProgramName}(${program_version})..."
     ${BIN} -c ${CONFIGFILE} >/dev/null 2>&1 &
     sleep 1
     if ! fun_check_run; then
@@ -72,7 +69,7 @@ fun_start()
         return 1
     fi
     echo " done"
-    echo "${ProgramName} (pid $PID)is running."
+    echo "${ProgramName} (pid $PID)正在运行."
     return 0
 }
 
@@ -81,16 +78,16 @@ fun_stop(){
       fun_clangcn
     fi
     if fun_check_run; then
-        echo -n "Stoping ${ProgramName} (pid $PID)... "
+        echo -n "停止 ${ProgramName} (pid $PID)... "
         kill $PID
         if [ "$?" != 0 ] ; then
-            echo " failed"
+            echo " 失败"
             return 1
         else
-            echo " done"
+            echo " 完毕"
         fi
     else
-        echo "${ProgramName} is not running."
+        echo "${ProgramName} 没有运行."
     fi
     return 0
 }
@@ -101,9 +98,9 @@ fun_restart(){
 fun_status(){
     PID=`ps -ef | grep -v grep | grep -i "${BIN}" | awk '{print $2}'`
     if [ ! -z $PID ]; then
-        echo "${ProgramName} (pid $PID) is running..."
+        echo "${ProgramName} (pid $PID) 正在运行..."
     else
-        echo "${ProgramName} is stopped"
+        echo "${ProgramName} 已停止"
         exit 0
     fi
 }
@@ -119,7 +116,7 @@ checkos(){
     elif grep -Eqi "Fedora" /etc/issue || grep -Eq "Fedora" /etc/*-release; then
         OS=Fedora
     else
-        echo "Not support OS, Please reinstall OS and retry!"
+        echo "不支持操作系统，请重新安装操作系统并重试!"
         return 1
     fi
 }
@@ -127,12 +124,12 @@ fun_config(){
     if [ -s ${CONFIGFILE} ]; then
         vi ${CONFIGFILE}
     else
-        echo "${ProgramName} configuration file not found!"
+        echo "${ProgramName} 未找到配置文件!"
         return 1
     fi
 }
 fun_version(){
-    echo "${ProgramName} version ${program_version}"
+    echo "${ProgramName} 版本是 ${program_version}"
     return 0
 }
 fun_help(){
@@ -157,7 +154,7 @@ case "${arg1}" in
     ;;
     *)
         fun_clangcn
-        echo "Usage: $SCRIPTNAME {start|stop|restart|status|config|version}"
+        echo "用法: $SCRIPTNAME {start|stop|restart|status|config|version}"
         RET_VAL=1
     ;;
 esac
