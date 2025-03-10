@@ -31,6 +31,9 @@ sudo systemctl status frpc   # 查看状态
 sudo ./frpc.sh update        # 自动检测更新
 ~~~
 ~~~bash
+sudo ./frpc.sh uninstall     # 卸载
+~~~
+~~~bash
 sudo ./frpc.sh reinstall     # 强制重新安装
 ~~~
 
