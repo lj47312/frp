@@ -8,7 +8,7 @@ Frp 是一个高性能的反向代理应用，可以帮助您轻松地进行内�
 ### 操作方法
 #### 一、安装Frpc客户端
 ~~~bash
-bash <(curl -Ls https://raw.githubusercontent.com/KuwiNet/frpc-onekey/master/frpc_install.sh)
+curl -LO https://raw.githubusercontent.com/KuwiNet/frpc-onekey/master/frpc.sh && chmod +x frpc.sh && ./frpc.sh
 ~~~
 
 #### 二、修改Frpc配置
@@ -17,13 +17,42 @@ bash <(curl -Ls https://raw.githubusercontent.com/KuwiNet/frpc-onekey/master/frp
 vi /usr/local/frpc/frpc.toml
 ~~~
 
-#### 三、启动Frpc、查看状态
+#### 三、启动Frpc、更新、强制重装
 ~~~bash
-sudo systemctl start frpc
+sudo systemctl start frpc    # 启动服务
 ~~~
 ~~~basj
-sudo systemctl restart frpc
+sudo systemctl restart frpc  # 重启服务
 ~~~
 ~~~bash
-sudo systemctl status frpc
+sudo systemctl status frpc   # 查看状态
+~~~
+~~~bash
+sudo ./frpc.sh update        # 自动检测更新
+~~~
+~~~bash
+sudo ./frpc.sh reinstall     # 强制重新安装
+~~~
+
+#### 四、快捷命令
+~~~bash
+frpc start     # 启动服务
+~~~
+~~~bash
+frpc restart   # 重启服务
+~~~
+~~~bash
+frpc stop      # 停止服务
+~~~
+~~~bash
+frpc status    # 查看状态
+~~~
+~~~bash
+frpc version   # 查看版本
+~~~
+~~~bash
+frpc config    # 查看配置
+~~~
+~~~bash
+用法: frpc {start|stop|restart|status|config|version}
 ~~~
