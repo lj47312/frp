@@ -34,7 +34,6 @@ strLog=""
 fun_clangcn()
 {
     echo "Frpc 快捷命令"
-    echo "用法: $SCRIPTNAME {start|stop|restart|status|config|version}"
 }
 
 fun_check_run(){
