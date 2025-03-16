@@ -15,7 +15,7 @@ export github_latest_version_api="https://api.github.com/repos/fatedier/frp/rele
 
 # 项目信息
 program_name="frps"
-version="1.0.7"
+version="1.0.0"
 str_program_dir="/usr/local/${program_name}"
 program_init="/etc/init.d/${program_name}"
 program_config_file="frps.toml"
@@ -357,7 +357,7 @@ fun_check_port(){
         checkServerPort=`netstat -ntulp | grep "\b:${strCheckPort}\b"`
         if [ -n "${checkServerPort}" ]; then
             echo ""
-            echo -e "${COLOR_RED}Error:${COLOR_END} Port ${COLOR_GREEN}${strCheckPort}${COLOR_END} is ${COLOR_PINK}used${COLOR_END},查看相关端口："
+            echo -e "${COLOR_RED} 错误:${COLOR_END} 端口 ${COLOR_GREEN}${strCheckPort}${COLOR_END} ${COLOR_PINK}被占用${COLOR_END},查看相关端口："
             netstat -ntulp | grep "\b:${strCheckPort}\b"
             fun_input_${port_flag}_port
         else
@@ -593,7 +593,7 @@ else
         echo -e "${program_name} log_max_days: ${COLOR_YELOW}${set_log_max_days}${COLOR_END}"
         echo -e ""
         echo -e "Please select ${COLOR_GREEN}log_file${COLOR_END}"
-        echo    "1: enable (default)"
+        echo    "1: enable (默认)"
         echo    "2: disable"
         echo "-------------------------"
         read -e -p "输入您的选择 (1, 2 或退出。 默认 [1]): " str_log_file
@@ -677,7 +677,7 @@ else
         echo -e "transport protocol support: ${COLOR_YELOW}${set_transport_protocol}${COLOR_END}"
         echo -e ""
 
-        echo "============== Check your input =============="
+        echo "============== 检查您的输入 =============="
         echo -e "You Server IP      : ${COLOR_GREEN}${defIP}${COLOR_END}"
         echo -e "Bind port          : ${COLOR_GREEN}${set_bind_port}${COLOR_END}"
         echo -e "vhost http port    : ${COLOR_GREEN}${set_vhost_http_port}${COLOR_END}"
@@ -709,7 +709,7 @@ install_program_server_frps(){
     cd ${str_program_dir}
     echo "${program_name} 安装路径：$PWD"
 
-    echo -n "配置文件 ${program_name} ..."
+    echo -n "写入 ${program_name} 配置文件..."
     
 # 将配置写入 frps 配置文件
 
@@ -846,24 +846,24 @@ subDomainHost = "${set_subdomain_host}"
 # sshTunnelGateway.autoGenPrivateKeyPath = ""
 # sshTunnelGateway.authorizedKeysFile = "/home/frp-user/.ssh/authorized_keys"
 EOF
-    echo " 完毕"
+    echo " 完成"
 
 	echo -n "下载 ${program_name} ..."
 	rm -f ${str_program_dir}/${program_name} ${program_init}
 	fun_download_file
-	echo "Done"
+	echo "完成"
 	echo ""
-	echo -n "download ${program_init}..."
+	echo -n "下载 ${program_init}..."
 	if [ ! -s ${program_init} ]; then
 		if ! wget  -q ${FRPS_INIT} -O ${program_init}; then
-			echo -e " ${COLOR_RED}failed${COLOR_END}"
+			echo -e " ${COLOR_RED}下载失败${COLOR_END}"
 			exit 1
 		fi
 	fi
 	[ ! -x ${program_init} ] && chmod +x ${program_init}
-	echo " done"
+	echo " 完成"
 
-	echo -n "setting ${program_name} boot..."
+	echo -n "设置 ${program_name} 引导..."
 	
 	[ ! -x ${program_init} ] && chmod +x ${program_init}
 	
@@ -875,35 +875,36 @@ EOF
 		update-rc.d -f ${program_name} defaults
 	fi
 	
-	echo " done"
+	echo " 完成"
 
 	[ -s ${program_init} ] && ln -sf ${program_init} /usr/bin/${program_name}
 
-	# Start the frps service
+
+# 启动 frps 服务
 	${program_init} start
 
-	# Check if the frps service started successfully
+	# 检查frps服务是否启动成功
 	if pgrep -x "${program_name}" >/dev/null; then
-		echo "${program_name} service started successfully."
+		echo "${program_name} 服务启动成功。"
 		fun_frps
 		echo -e "${COLOR_GREEN}
-	┌─────────────────────────────────────────┐
-	│   frp service started successfully.     │
-	└─────────────────────────────────────────┘
-	┌─────────────────────────────────────────┐
-	│  Installation completed successfully.   │
-	└─────────────────────────────────────────┘${COLOR_END}"
+	─────────────────────────────────────────
+	  frp 服务启动成功。
+	─────────────────────────────────────────
+	─────────────────────────────────────────
+	  安装成功。
+	─────────────────────────────────────────${COLOR_END}"
 	echo ""
 	else
 		echo -e "${COLOR_RED}
-	┌─────────────────────────────────────────┐
-	│   frp service failed to start.          │
-	└─────────────────────────────────────────┘	
-	┌─────────────────────────────────────────┐
-	│ Installation failed, Please re-install. │
-	└─────────────────────────────────────────┘${COLOR_END}"
+	─────────────────────────────────────────
+	  frp 服务启动失败。
+	─────────────────────────────────────────	
+	─────────────────────────────────────────
+	  安装失败，请重新安装。
+	─────────────────────────────────────────${COLOR_END}"
 	echo ""
-	# Remove the installed service
+	# 删除已安装的服务
     if [ "${OS}" == 'CentOS' ]; then
         chkconfig --del ${program_name}
     else
@@ -911,9 +912,9 @@ EOF
     fi
 			exit 1
 fi
-    # Print the frps configuration
+    # 打印 frps 配置
     echo ""
-    echo "Congratulations, ${program_name} install completed!"
+    echo "恭喜, ${program_name} 安装完成！"
     echo "================================================"
     echo -e "You Server IP      : ${COLOR_GREEN}${defIP}${COLOR_END}"
     echo -e "bind port          : ${COLOR_GREEN}${set_bind_port}${COLOR_END}"
@@ -930,66 +931,66 @@ fi
     echo -e "kcp bind port      : ${COLOR_GREEN}${set_kcp_bind_port}${COLOR_END}"
     echo -e "quic bind port     : ${COLOR_GREEN}${set_quic_bind_port}${COLOR_END}"	
     echo "================================================"
-    echo -e "${program_name} Dashboard     : ${COLOR_GREEN}http://${set_subdomain_host}:${set_dashboard_port}/${COLOR_END}"
-    echo -e "Dashboard port     : ${COLOR_GREEN}${set_dashboard_port}${COLOR_END}"
-    echo -e "Dashboard user     : ${COLOR_GREEN}${set_dashboard_user}${COLOR_END}"
-    echo -e "Dashboard password : ${COLOR_GREEN}${set_dashboard_pwd}${COLOR_END}"
+    echo -e "${program_name} 仪表板地址 : ${COLOR_GREEN}http://${set_subdomain_host}:${set_dashboard_port}/${COLOR_END}"
+    echo -e "仪表板端口 : ${COLOR_GREEN}${set_dashboard_port}${COLOR_END}"
+    echo -e "仪表板用户名 : ${COLOR_GREEN}${set_dashboard_user}${COLOR_END}"
+    echo -e "仪表板密码 : ${COLOR_GREEN}${set_dashboard_pwd}${COLOR_END}"
     echo "================================================"
     echo ""
-    echo -e "${program_name} status manage : ${COLOR_PINKBACK_WHITEFONT}${program_name}${COLOR_END} {${COLOR_GREEN}start|stop|restart|status|config|version${COLOR_END}}"
-    echo -e "Example:"
-    echo -e "  start: ${COLOR_PINK}${program_name}${COLOR_END} ${COLOR_GREEN}start${COLOR_END}"
-    echo -e "   stop: ${COLOR_PINK}${program_name}${COLOR_END} ${COLOR_GREEN}stop${COLOR_END}"
-    echo -e "restart: ${COLOR_PINK}${program_name}${COLOR_END} ${COLOR_GREEN}restart${COLOR_END}"
+    echo -e "${program_name} 管理用法 : ${COLOR_PINKBACK_WHITEFONT}${program_name}${COLOR_END} {${COLOR_GREEN}start|stop|restart|status|config|version${COLOR_END}}"
+    echo -e "举例 ："
+    echo -e "启动 : ${COLOR_PINK}${program_name}${COLOR_END} ${COLOR_GREEN}start${COLOR_END}"
+    echo -e "停止 : ${COLOR_PINK}${program_name}${COLOR_END} ${COLOR_GREEN}stop${COLOR_END}"
+    echo -e "重启 : ${COLOR_PINK}${program_name}${COLOR_END} ${COLOR_GREEN}restart${COLOR_END}"
     exit 0
 }
-############################### configure ##################################
+############################### 配置 ##################################
 configure_program_server_frps(){
     if [ -s ${str_program_dir}/${program_config_file} ]; then
         vi ${str_program_dir}/${program_config_file}
     else
-        echo "${program_name} configuration file not found!"
+        echo "${program_name} 未找到配置文件！"
         exit 1
     fi
 }
-############################### uninstall ##################################
+############################### 卸载 ##################################
 uninstall_program_server_frps(){
     fun_frps
     if [ -s ${program_init} ] || [ -s ${str_program_dir}/${program_name} ] ; then
-        echo "============== Uninstall ${program_name} =============="
+        echo "==============  卸载 ${program_name} =============="
         str_uninstall="n"
-        echo -n -e "${COLOR_YELOW}You want to uninstall?${COLOR_END}"
+        echo -n -e "${COLOR_YELOW}您想卸载吗？${COLOR_END}"
         read -e -p "[Y/N]:" str_uninstall
         case "${str_uninstall}" in
         [yY]|[yY][eE][sS])
             echo ""
-            echo "You select [Yes], press any key to continue."
+            echo "您选择[Yes]，按任意键继续。"
             str_uninstall="y"
             char=`get_char`
 
-            # Stop frps server
+            # 停止 frps 服务
             ${program_init} stop
 
             rm -f ${program_init} /var/run/${program_name}.pid /usr/bin/${program_name}
             rm -fr ${str_program_dir}
-            echo "${program_name} uninstall success!"
+            echo "${program_name} 卸载成功"
             ;;
         *)
             echo ""
             str_uninstall="n"
             esac
         if [ "${str_uninstall}" == 'n' ]; then
-            echo "You select [No],shell exit!"
+            echo "您选择 [No]，脚本退出"
         fi
     else
-        echo "${program_name} Not install!"
+        echo "${program_name} 未安装！"
     fi
     exit 0
 }
-############################### update ##################################
+############################### 更新 ##################################
 update_config_frps(){
     if [ ! -r "${str_program_dir}/${program_config_file}" ]; then
-        echo "config file ${str_program_dir}/${program_config_file} not found."
+        echo "配置文件 ${str_program_dir}/${program_config_file} 未找到。"
     else
         search_dashboard_user=`grep "dashboard_user" ${str_program_dir}/${program_config_file}`
         search_dashboard_pwd=`grep "dashboard_pwd" ${str_program_dir}/${program_config_file}`
@@ -999,30 +1000,30 @@ update_config_frps(){
         search_token=`grep "privilege_token" ${str_program_dir}/${program_config_file}`
         search_allow_ports=`grep "privilege_allow_ports" ${str_program_dir}/${program_config_file}`
         if [ -z "${search_dashboard_user}" ] || [ -z "${search_dashboard_pwd}" ] || [ -z "${search_kcp_bind_port}" ] || [ -z "${search_quic_bind_port}" ] || [ -z "${search_tcp_mux}" ] || [ ! -z "${search_token}" ] || [ ! -z "${search_allow_ports}" ];then
-            echo -e "${COLOR_GREEN}Configuration files need to be updated, now setting:${COLOR_END}"
+            echo -e "${COLOR_GREEN}配置文件需要更新，现在设置：${COLOR_END}"
             echo ""
             if [ ! -z "${search_token}" ];then
                 sed -i "s/privilege_token/token/" ${str_program_dir}/${program_config_file}
             fi
             if [ -z "${search_dashboard_user}" ] && [ -z "${search_dashboard_pwd}" ];then
                 def_dashboard_user_update="admin"
-                read -e -p "Please input dashboard_user (Default: ${def_dashboard_user_update}):" set_dashboard_user_update
+                read -e -p "请输入 dashboard_user (默认: ${def_dashboard_user_update}):" set_dashboard_user_update
                 [ -z "${set_dashboard_user_update}" ] && set_dashboard_user_update="${def_dashboard_user_update}"
                 echo "${program_name} dashboard_user: ${set_dashboard_user_update}"
                 echo ""
                 def_dashboard_pwd_update=`fun_randstr 8`
-                read -e -p "Please input dashboard_pwd (Default: ${def_dashboard_pwd_update}):" set_dashboard_pwd_update
+                read -e -p "请输入 dashboard_pwd (默认: ${def_dashboard_pwd_update}):" set_dashboard_pwd_update
                 [ -z "${set_dashboard_pwd_update}" ] && set_dashboard_pwd_update="${def_dashboard_pwd_update}"
                 echo "${program_name} dashboard_pwd: ${set_dashboard_pwd_update}"
                 echo ""
                 sed -i "/dashboard_port =.*/a\dashboard_user = ${set_dashboard_user_update}\ndashboard_pwd = ${set_dashboard_pwd_update}\n" ${str_program_dir}/${program_config_file}
             fi
             if [ -z "${search_kcp_bind_port}" ];then 
-                echo -e "${COLOR_GREEN}Please select transport protocol support${COLOR_END}"
-                echo "1: enable (default)"
+                echo -e "${COLOR_GREEN}请选择 transport protocol support${COLOR_END}"
+                echo "1: enable (默认)"
                 echo "2: disable"
                 echo "-------------------------"  
-                read -e -p "Enter your choice (1, 2 or exit. default [1]): " str_transport_protocol
+                read -e -p "输入您的选择 (1, 2 or exit. 默认 [1]): " str_transport_protocol
                 case "${str_transport_protocol}" in
                     1|[yY]|[yY][eE][sS]|[oO][nN]|[tT][rR][uU][eE]|[eE][nN][aA][bB][lL][eE])
                         set_transport_protocol="enable"
@@ -1046,11 +1047,11 @@ update_config_frps(){
                 fi
             fi
             if [ -z "${search_tcp_mux}" ];then
-                echo "# Please select tcp_mux "
-                echo "1: enable (default)"
+                echo "# 请选择 tcp_mux "
+                echo "1: enable (默认)"
                 echo "2: disable"
                 echo "-------------------------"  
-                read -e -p "Enter your choice (1, 2 or exit. default [1]): " str_tcp_mux
+                read -e -p "输入您的选择 (1, 2 or exit. 默认 [1]): " str_tcp_mux
                 case "${str_tcp_mux}" in
                     1|[yY]|[yY][eE][sS]|[oO][nN]|[tT][rR][uU][eE]|[eE][nN][aA][bB][lL][eE])
                         set_tcp_mux="true"
@@ -1081,9 +1082,9 @@ update_config_frps(){
         verify_token=`grep "privilege_token" ${str_program_dir}/${program_config_file}`
         verify_allow_ports=`grep "privilege_allow_ports" ${str_program_dir}/${program_config_file}`
         if [ ! -z "${verify_dashboard_user}" ] && [ ! -z "${verify_dashboard_pwd}" ] && [ ! -z "${verify_kcp_bind_port}" ] && [ ! -z "${verify_tcp_mux}" ] && [ -z "${verify_token}" ] && [ -z "${verify_allow_ports}" ];then
-            echo -e "${COLOR_GREEN}update configuration file successfully!!!${COLOR_END}"
+            echo -e "${COLOR_GREEN}更新配置文件成功！！！${COLOR_END}"
         else
-            echo -e "${COLOR_RED}update configuration file error!!!${COLOR_END}"
+            echo -e "${COLOR_RED}更新配置文件错误！！！${COLOR_END}"
         fi
     fi
 }
@@ -1091,7 +1092,7 @@ update_program_server_frps() {
     fun_frps "clear"
 
     if [ -s "$program_init" ] || [ -s "$str_program_dir/$program_name" ]; then
-        echo "============== Update $program_name =============="
+        echo "============== 更新 $program_name =============="
         update_config_frps
         checkos
         check_os_version
@@ -1104,26 +1105,26 @@ update_program_server_frps() {
 
         if [ -n "$remote_init_version" ]; then
             if [ "$local_init_version" != "$remote_init_version" ]; then
-                echo "========== Update $program_name $program_init =========="
+                echo "========== 更新 $program_name $program_init =========="
                 if ! wget "$FRPS_INIT" -O "$program_init"; then
-                    echo "Failed to download $program_name.init file!"
+                    echo "无法下载 $program_name.init 文件！"
                     exit 1
                 else
-                    echo -e "${COLOR_GREEN}${program_init} Update successfully !!!${COLOR_END}"
+                    echo -e "${COLOR_GREEN}${program_init} 更新成功！！！${COLOR_END}"
                 fi
             fi
         fi
 
         [ ! -d "$str_program_dir" ] && mkdir -p "$str_program_dir"
-        echo -e "Loading network version for $program_name, please wait..."
+        echo -e "正在下载 $program_name 远程版本, 请等待..."
         fun_getServer
         fun_getVer >/dev/null 2>&1
         local_program_version="$($str_program_dir/$program_name --version)"
-        echo -e "${COLOR_GREEN}$program_name local version $local_program_version${COLOR_END}"
-        echo -e "${COLOR_GREEN}$program_name remote version $FRPS_VER${COLOR_END}"
+        echo -e "${COLOR_GREEN}$program_name 本地版本 $local_program_version${COLOR_END}"
+        echo -e "${COLOR_GREEN}$program_name 远程版本 $FRPS_VER${COLOR_END}"
 
         if [ "$local_program_version" != "$FRPS_VER" ]; then
-            echo -e "${COLOR_GREEN}Found a new version, update now!!!${COLOR_END}"
+            echo -e "${COLOR_GREEN}发现新版本，请更新！！！${COLOR_END}"
             "$program_init" stop
             sleep 1
             rm -f /usr/bin/$program_name "$str_program_dir/$program_name"
@@ -1140,13 +1141,13 @@ update_program_server_frps() {
             [ -s "$program_init" ] && ln -s "$program_init" /usr/bin/$program_name
             [ ! -x "$program_init" ] && chmod 755 "$program_init"
             "$program_init" start
-            echo "$program_name version $($str_program_dir/$program_name --version)"
-            echo "$program_name update success!"
+            echo "$program_name 版本 $($str_program_dir/$program_name --version)"
+            echo "$program_name 更新成功！"
         else
-            echo -e "no need to update !!!${COLOR_END}"
+            echo -e "无需更新！！！${COLOR_END}"
         fi
     else
-        echo "$program_name Not install!"
+        echo "$program_name 未安装！"
     fi
     exit 0
 }
@@ -1161,12 +1162,12 @@ check_os_bit
 pre_install_packs
 shell_update
 
-# Initialization
+# 初始化
 action=$1
 if [ -z "$action" ]; then
     fun_frps
-    echo "Arguments error! [$action ]"
-    echo "Usage: $(basename "$0") {install|uninstall|update|config}"
+    echo "参数错误！ [$action ]"
+    echo "用法： $(basename "$0") {install|uninstall|update|config}"
     RET_VAL=1
 else
     case "$action" in
@@ -1184,8 +1185,8 @@ else
         ;;
     *)
         fun_frps
-        echo "Arguments error! [$action ]"
-        echo "Usage: $(basename "$0") {install|uninstall|update|config}"
+        echo "参数错误！ [$action ]"
+        echo "用法： $(basename "$0") {install|uninstall|update|config}"
         RET_VAL=1
         ;;
     esac
