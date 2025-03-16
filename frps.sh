@@ -15,7 +15,7 @@ export github_latest_version_api="https://api.github.com/repos/fatedier/frp/rele
 
 # 项目信息
 program_name="frps"
-version="1.0.0"
+version="1.0.1"
 str_program_dir="/usr/local/${program_name}"
 program_init="/etc/init.d/${program_name}"
 program_config_file="frps.toml"
@@ -28,7 +28,7 @@ shell_update() {
     fun_frps "clear"
 
     # 回显一条消息以表明我们正在检查 shell 更新
-    echo "正在检查 shell 更新..."
+    echo "正在检查脚本更新..."
 
     # 从指定 URL 获取远程 shell 版本
     remote_shell_version=$(wget --no-check-certificate -qO- "${str_install_shell}" | sed -n '/^version/p' | cut -d'"' -f2)
@@ -49,7 +49,7 @@ shell_update() {
 	echo
 
 	# 回显一条消息以表明我们正在更新 shell
-	echo -n "正在更新 shell..."
+	echo -n "正在更新脚本..."
 
 	# 尝试下载新版本并覆盖当前脚本
 	if ! wget --no-check-certificate -qO "$0" "${str_install_shell}"; then
@@ -100,7 +100,7 @@ fun_set_text_color(){
 rootness(){
     if [[ $EUID -ne 0 ]]; then
         fun_frps
-        echo "Error:This script must be run as root!" 1>&2
+        echo "错误：此脚本必须以 root 身份运行！" 1>&2
         exit 1
     fi
 }
@@ -164,7 +164,7 @@ check_os_version(){
         return 1  # 当当前版本 < 所需版本时
     fi
 }
-# 检查操作系统位
+# 检查操作系统架构
 check_os_bit() {
     local arch
     arch=$(uname -m)
@@ -179,7 +179,7 @@ check_os_bit() {
         mips64el)    Is_64bit='y'; ARCHS="mips64le";;
         mipsel)      Is_64bit='n'; ARCHS="mipsle"; FRPS_VER="$FRPS_VER_32BIT";;
         riscv64)     Is_64bit='y'; ARCHS="riscv64";;
-        *)           echo "Unknown architecture";;
+        *)           echo "未知的架构";;
     esac
 }
 # 禁用 selinux
@@ -222,7 +222,7 @@ fun_getServer(){
     echo -e "请选择 ${COLOR_PINK}${program_name} 下载${COLOR_END} 网址:"
     echo -e "[1].gitee"
     echo -e "[2].github (默认)"
-    read -e -p "Enter your choice (1, 2 or exit. default [${def_server_url}]): " set_server_url
+    read -e -p "输入您的选择 (1, 2 或退出。 默认 [${def_server_url}]): " set_server_url
     [ -z "${set_server_url}" ] && set_server_url="${def_server_url}"
     case "${set_server_url}" in
         1|[Ga][Ii][Tt][Ee][Ee])
