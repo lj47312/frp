@@ -25,7 +25,7 @@ start)
     systemctl start ${FRP_NAME} && echo "服务已启动" || echo "启动失败"
     ;;
 restart)
-    systemctl restart ${FRP_NAME} && echo "服务重启" || echo "重启失败"
+    systemctl restart ${FRP_NAME} && echo "服务已重启" || echo "重启失败"
     ;;
 stop)
     systemctl stop ${FRP_NAME} && echo "服务已停止" || echo "停止失败"
