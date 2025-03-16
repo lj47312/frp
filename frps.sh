@@ -1167,7 +1167,7 @@ action=$1
 if [ -z "$action" ]; then
     fun_frps
     echo "参数错误！ [$action ]"
-    echo "用法： $(basename "$0") {install|uninstall|update|config}"
+    echo "用法： sudo ./$(basename "$0") {install|uninstall|update|config}"
     RET_VAL=1
 else
     case "$action" in
@@ -1186,7 +1186,7 @@ else
     *)
         fun_frps
         echo "参数错误！ [$action ]"
-        echo "用法： $(basename "$0") {install|uninstall|update|config}"
+        echo "用法： sudo ./$(basename "$0") {install|uninstall|update|config}"
         RET_VAL=1
         ;;
     esac
