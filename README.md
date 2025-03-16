@@ -23,7 +23,7 @@ curl -LO https://raw.githubusercontent.com/KuwiNet/frp-onekey/master/frps.sh && 
 ~~~bash
 curl -LO https://gitee.com/kuwinet/frp-onekey/raw/master/frps.sh && chmod +x frps.sh && ./frps.sh install
 ~~~
-#### 二、修改Frpc配置（Frps 配置文件位置: /usr/local/frps/frps.tmol）
+#### 二、修改Frpc配置（Frps 配置文件位置: /usr/local/frps/frps.toml）
 先修改 frpc.toml 文件，确保格式及配置正确无误！文件位置：/usr/local/frpc/frpc.toml
 ~~~bash
 vi /usr/local/frpc/frpc.toml
