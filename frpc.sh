@@ -174,7 +174,6 @@ name = "000003.http"
 type = "http"
 localIP = "127.0.0.1"
 localPort = 8000
-subdomain = "www"
 customDomains = ["*.afrp.net"]
 
 [[proxies]]
@@ -182,7 +181,6 @@ name = "000004.https"
 type = "https"
 localIP = "127.0.0.1"
 localPort = 8001
-subdomain = "www"
 customDomains = ["*.afrp.net"]
 EOF
 
