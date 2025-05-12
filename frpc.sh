@@ -14,7 +14,7 @@ Font="\033[0m"
 # 自定义变量
 WORK_PATH=$(dirname $(readlink -f $0))
 FRP_NAME=frpc
-FRP_VERSION=0.61.2
+FRP_VERSION=0.62.1
 FRP_PATH=/usr/local/frpc
 PROXY_URL="https://ghfast.top/"
 
