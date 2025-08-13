@@ -7,8 +7,8 @@ export PATH
 # 设置环境变量
 export FRPS_VER="$LATEST_RELEASE"
 export FRPS_VER_32BIT="$LATEST_RELEASE"
-export FRPS_INIT="https://raw.githubusercontent.com/KuwiNet/frp-onekey/master/frps.init"
-export gitee_download_url="https://gitee.com/kuwinet/frp-onekey/releases/download"
+export FRPS_INIT="https://raw.githubusercontent.com/lj47312/frp/master/frps.init"
+export gitee_download_url="https://gitee.com/lj47312/frp/releases/download"
 export github_download_url="https://github.com/fatedier/frp/releases/download"
 export gitee_latest_version_api="https://gitee.com/api/v5/repos/mvscode/frps-onekey/releases/latest"
 export github_latest_version_api="https://api.github.com/repos/fatedier/frp/releases/latest"
@@ -20,7 +20,7 @@ str_program_dir="/usr/local/${program_name}"
 program_init="/etc/init.d/${program_name}"
 program_config_file="frps.toml"
 ver_file="/tmp/.frp_ver.sh"
-str_install_shell="https://raw.githubusercontent.com/KuwiNet/frp-onekey/master/frps.sh"
+str_install_shell="https://raw.githubusercontent.com/lj47312/frp/master/frps.sh"
 
 # 检查 shell 更新的函数
 shell_update() {
