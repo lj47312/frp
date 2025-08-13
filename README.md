@@ -5,7 +5,7 @@
   <li>此脚本原作者：clangcn (<a href="https://github.com/clangcn/onekey-install-shell" target="_blank">https://github.com/clangcn/onekey-install-shell</a>)</li>
 </ul>
 <h2><a id="user-content-frps-onekey-install-shell" aria-hidden="true" href="https://github.com/lj47312/frp#frp"></a>Frp</h2>
-<h3><a id="user-content-install安装" aria-hidden="true" href="https://github.com/lj47312/frp#install安装"></a>Install（安装）</h3>
+<h3><a id="user-content-install安装" aria-hidden="true" href="https://github.com/lj47312/frp#install安装"></a>Frps服务端Install（安装）</h3>
 <h4><a id="user-content-github" aria-hidden="true" href="https://github.com/lj47312/frp#github"></a>Github</h4>
 <div>
   <pre>wget --no-check-certificate https://github.itzmx.com/lj47312/frp/master/frps.sh -O ./frps.sh &amp;&amp; chmod 700 ./frps.sh &amp;&amp; ./frps.sh install</pre>
@@ -13,6 +13,16 @@
 <h4><a id="user-content-aliyun" aria-hidden="true" href="https://github.com/lj47312/frp#aliyun"></a>Gitee</h4>
 <div>
   <pre>wget --no-check-certificate https://gitee.com/lj47312/frp/raw/main/frps.sh -O ./frps.sh &amp;&amp; chmod 700 ./frps.sh &amp;&amp; ./frps.sh install</pre>
+</div>
+<h2><a id="user-content-frps-onekey-install-shell" aria-hidden="true" href="https://github.com/lj47312/frp#frp"></a>Frp</h2>
+<h3><a id="user-content-install安装" aria-hidden="true" href="https://github.com/lj47312/frp#install安装"></a>Frpc客户端Install（安装）</h3>
+<h4><a id="user-content-github" aria-hidden="true" href="https://github.com/lj47312/frp#github"></a>Github</h4>
+<div>
+  <pre>wget --no-check-certificate https://github.itzmx.com/lj47312/frp/master/frpc.sh -O ./frpc.sh &amp;&amp; chmod 700 ./frpc.sh &amp;&amp; ./frpc.sh install</pre>
+</div>
+<h4><a id="user-content-aliyun" aria-hidden="true" href="https://github.com/lj47312/frp#aliyun"></a>Gitee</h4>
+<div>
+  <pre>wget --no-check-certificate https://gitee.com/lj47312/frp/raw/main/frpc.sh -O ./frps.sh &amp;&amp; chmod 700 ./frpc.sh &amp;&amp; ./frpc.sh install</pre>
 </div>
 <h3><a id="user-content-uninstall卸载" aria-hidden="true" href="https://github.com/lj47312/frp#uninstall卸载"></a>Uninstall（卸载）</h3>
 <div>
