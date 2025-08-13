@@ -14,7 +14,6 @@
 <div>
   <pre>wget --no-check-certificate https://gitee.com/lj47312/frp/raw/main/frps.sh -O ./frps.sh &amp;&amp; chmod 700 ./frps.sh &amp;&amp; ./frps.sh install</pre>
 </div>
-<h2><a id="user-content-frps-onekey-install-shell" aria-hidden="true" href="https://github.com/lj47312/frp#frp"></a>Frp</h2>
 <h3><a id="user-content-install安装" aria-hidden="true" href="https://github.com/lj47312/frp#install安装"></a>Frpc客户端Install（安装）</h3>
 <h4><a id="user-content-github" aria-hidden="true" href="https://github.com/lj47312/frp#github"></a>Github</h4>
 <div>
