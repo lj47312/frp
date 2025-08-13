@@ -208,13 +208,13 @@ sudo systemctl enable ${FRP_NAME}
 
 # 下载 frpc.init
 if [ $GOOGLE_HTTP_CODE == "200" ]; then
-    wget -N https://raw.githubusercontent.com/KuwiNet/frpc/master/frpc.init
+    wget -N https://raw.githubusercontent.com/lj47312/frpc/master/frpc.init
 else
     if [ $PROXY_HTTP_CODE == "200" ]; then
-        wget -N ${PROXY_URL}https://raw.githubusercontent.com/KuwiNet/frpc/master/frpc.init
+        wget -N ${PROXY_URL}https://raw.githubusercontent.com/lj47312/frpc/master/frpc.init
     else
         echo -e "${Red}检测 GitHub Proxy 代理失效 开始使用官方地址下载${Font}"
-        wget -N https://raw.githubusercontent.com/KuwiNet/frpc/master/frpc.init
+        wget -N https://raw.githubusercontent.com/lj47312/frpc/master/frpc.init
     fi
 fi
 sudo mv frpc.init /etc/init.d/frpc
