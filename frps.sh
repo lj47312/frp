@@ -80,10 +80,10 @@ fun_frps(){
         clear
     fi
     echo ""
-    echo "+------------------------------------------------------------+"
-    echo "|    适用于 Linux 服务器的 frps， Clang 原创，KuwiNet 修改   |" 
-    echo "|              Linux 上自动编译安装 frps 的工具              |"
-    echo "+------------------------------------------------------------+"
+    echo "+------------------------------------------------------------------------+"
+    echo "|    适用于 Linux 服务器的 frps， Clang 原创，KuwiNet 修改，lj47312 定制    |" 
+    echo "|              Linux 上自动编译安装 frps 的工具                            |"
+    echo "+------------------------------------------------------------------------+"
     echo ""
 }
 fun_set_text_color(){
@@ -385,7 +385,7 @@ fun_check_number(){
 }
 # 输入配置数据
 fun_input_bind_port(){
-    def_server_port="5443"
+    def_server_port="44444"
     echo ""
     echo -n -e "请输入 ${program_name} ${COLOR_GREEN}bind_port（绑定端口）${COLOR_END} [1-65535]"
     read -e -p "(默认 bind_port: ${def_server_port}):" serverport
@@ -393,7 +393,7 @@ fun_input_bind_port(){
     fun_check_port "bind" "${serverport}"
 }
 fun_input_dashboard_port(){
-    def_dashboard_port="6443"
+    def_dashboard_port="22222"
     echo ""
     echo -n -e "请输入 ${program_name} ${COLOR_GREEN}dashboard_port（仪表板端口）${COLOR_END} [1-65535]"
     read -e -p "(默认 : ${def_dashboard_port}):" input_dashboard_port
@@ -401,7 +401,7 @@ fun_input_dashboard_port(){
     fun_check_port "dashboard" "${input_dashboard_port}"
 }
 fun_input_vhost_http_port(){
-    def_vhost_http_port="80"
+    def_vhost_http_port="47301"
     echo ""
     echo -n -e "请输入 ${program_name} ${COLOR_GREEN}vhost_http_port（虚拟主机http端口）${COLOR_END} [1-65535]"
     read -e -p "(默认 : ${def_vhost_http_port}):" input_vhost_http_port
@@ -409,7 +409,7 @@ fun_input_vhost_http_port(){
     fun_check_port "vhost_http" "${input_vhost_http_port}"
 }
 fun_input_vhost_https_port(){
-    def_vhost_https_port="443"
+    def_vhost_https_port="47302"
     echo ""
     echo -n -e "请输入 ${program_name} ${COLOR_GREEN}vhost_https_port（虚拟主机https端口）${COLOR_END} [1-65535]"
     read -e -p "(默认 : ${def_vhost_https_port}):" input_vhost_https_port
@@ -435,7 +435,7 @@ fun_input_max_pool_count(){
     fun_check_number "max_pool_count" "${def_max_pool}" "${input_max_pool_count}"
 }
 fun_input_dashboard_user(){
-    def_dashboard_user="admin"
+    def_dashboard_user="lj47312"
     echo ""
     echo -n -e "请输入 ${program_name} ${COLOR_GREEN}dashboard_user（仪表板用户名）${COLOR_END}"
     read -e -p "(默认 : ${def_dashboard_user}):" input_dashboard_user
@@ -513,7 +513,7 @@ else
         fun_getVer
         echo -e ""
         echo -e "正在加载您的服务器IP，请稍候..."
-        defIP=$(curl -s https://api.ipify.org)
+        defIP=$(curl -s https://ip.clang.cn)
         echo -e "您的服务器IP:${COLOR_GREEN}${defIP}${COLOR_END}"
         echo -e ""
         echo -e "————————————————————————————————————————————"
