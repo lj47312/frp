@@ -26,3 +26,52 @@
 <div>
   <pre>Usage: /etc/init.d/frps {start|stop|restart|status|config|version}</pre>
 </div>
+
+修改Frpc配置（Frps 配置文件位置: /usr/local/frps/frps.toml）
+先修改 frpc.toml 文件，确保格式及配置正确无误！文件位置：/usr/local/frpc/frpc.toml
+~~~bash
+vi /usr/local/frpc/frpc.toml
+~~~
+
+启动Frpc、更新、强制重装（Frps 同理）
+~~~bash
+sudo systemctl start frpc    # 启动服务
+~~~
+~~~bash
+sudo systemctl restart frpc  # 重启服务
+~~~
+~~~bash
+sudo systemctl status frpc   # 查看状态
+~~~
+~~~bash
+sudo ./frpc.sh update        # 自动检测更新
+~~~
+~~~bash
+sudo ./frpc.sh uninstall     # 卸载
+~~~
+~~~bash
+sudo ./frpc.sh reinstall     # 强制重新安装（Frps 不支持）
+~~~
+
+快捷命令（Frps 同理）
+~~~bash
+frpc start     # 启动服务
+~~~
+~~~bash
+frpc restart   # 重启服务
+~~~
+~~~bash
+frpc stop      # 停止服务
+~~~
+~~~bash
+frpc status    # 查看状态
+~~~
+~~~bash
+frpc version   # 查看版本
+~~~
+~~~bash
+frpc config    # 编辑配置
+~~~
+~~~bash
+用法: frpc {start|stop|restart|status|config|version}
+~~~
