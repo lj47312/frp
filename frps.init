@@ -27,7 +27,7 @@ NAME=frps
 BIN=${ProgramPath}/${NAME}
 CONFIGFILE=${ProgramPath}/frps.toml
 SCRIPTNAME=/etc/init.d/${NAME}
-version="2025"
+version="2026"
 program_version=`${BIN} --version`
 RET_VAL=0
 
